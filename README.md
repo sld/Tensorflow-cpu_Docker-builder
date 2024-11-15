@@ -46,7 +46,7 @@ Run docker container:
 ```
 docker run --rm -it \
     --name tf-builder-from-source \
-    --cpus=4 \
+    --cpus=32 \
     --volume $(pwd)/tf_wheel:/tf_wheel:rw \
     --env TF_PYTHON_VERSION=3.10 \
     tf-builder-from-source
@@ -57,7 +57,7 @@ docker run --rm -it \
 
 ```
 # Example
-pip install ./tf_wheel/tensorflow-2.15.0-cp310-cp310-linux_x86_64.whl 
+pip install ./tf_wheel/tensorflow-2.15.0-cp310-cp310-linux_x86_64.whl
 ```
 
 <br/>
@@ -73,7 +73,7 @@ pip install ./tf_wheel/tensorflow-2.15.0-cp310-cp310-linux_x86_64.whl
 | Tensorflow with ROCm | N                              |
 | Tensorflow with CUDA | N                              |
 | CLang as Compiler    | Y                              |
-| Optimization Flags   | -march=native                  |
+| Optimization Flags   | -march=westmere -Wno-sign-compare   |
 | Android Builds       | N                              |
 
 <br/>

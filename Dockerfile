@@ -8,13 +8,11 @@ RUN mkdir /tf_wheel
 
 WORKDIR /tf_builder
 
-COPY script_tf_from_source.sh /tf_builder/
-
 RUN apt-get update && \
     apt-get install -y \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
-    
+
 # Python-3
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test && \
     add-apt-repository ppa:deadsnakes/ppa
@@ -43,7 +41,10 @@ RUN wget https://apt.llvm.org/llvm.sh && \
 # Dependences
 RUN pip install -U  pip numpy wheel packaging requests opt_einsum
 RUN pip install -U  keras_preprocessing --no-deps
+# install curl
+RUN apt-get update && apt-get install -y curl
 
+COPY script_tf_from_source.sh /tf_builder/
 
 CMD ["./script_tf_from_source.sh"]
 
